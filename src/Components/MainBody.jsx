@@ -9,7 +9,7 @@ function MainBody() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("All");
 
-  const handleSubmit = (e) => {
+  const handleSubmitbutton = (e) => {
     e.preventDefault();
 
     const newTask = {
@@ -43,12 +43,12 @@ function MainBody() {
   };
 
   // Filtering Tasks
-  let filteredTasks = filter === "All" ? tasks : tasks.filter((task) => task.priority === filter);
+  let filteredTasksList = filter === "All" ? tasks : tasks.filter((task) => task.priority === filter);
 
   return (
     <div className="p-6 my-10 max-w-lg mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-xl font-semibold mb-4 text-center">Add Tasks</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmitbutton} className="flex flex-col gap-4">
         
         <label className="font-semibold">Task Name:</label>
         <input
@@ -115,11 +115,11 @@ function MainBody() {
       {/* Displaying Filtered Tasks */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold">Tasks List</h3>
-        {filteredTasks.length === 0 ? (
+        {filteredTasksList.length === 0 ? (
           <p className="text-gray-500">No tasks found.</p>
         ) : (
           <div className="mt-2 space-y-2">
-            {filteredTasks.map((task, ind) => (
+            {filteredTasksList.map((task, ind) => (
               <div
                 key={ind}
                 className="border p-3 rounded shadow-sm flex justify-between items-center"
