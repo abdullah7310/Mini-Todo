@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MainBody() {
   const [taskName, setTaskName] = useState("");
@@ -21,6 +23,7 @@ function MainBody() {
     };
 
     setTasks([...tasks, newTask]);
+    toast.success("Task added successfully!");
 
     setTaskName("");
     setDescription("");
@@ -43,6 +46,7 @@ function MainBody() {
   const handleDelete = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
+    toast.error("Task deleted!");
     setTasks(updatedTasks);
   };
 
@@ -50,6 +54,8 @@ function MainBody() {
   let filteredTasksList = filter === "All" ? tasks : tasks.filter((task) => task.priority === filter);
 
   return (
+    <>
+    <ToastContainer position="top-right" autoClose={3000} />
     <div className="p-6 my-10 max-w-lg mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-xl font-semibold mb-4 text-center">Add Tasks</h2>
       <form onSubmit={handleSubmitbutton} className="flex flex-col gap-4">
@@ -154,6 +160,7 @@ function MainBody() {
         )}
       </div>
     </div>
+    </>
   );
 }
 
