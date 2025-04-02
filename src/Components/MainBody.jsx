@@ -17,7 +17,7 @@ function MainBody() {
       description: description,
       dueDate: dueDate,
       priority: priority,
-      status: "Pending", // Default status
+      status: "Pending",
     };
 
     setTasks([...tasks, newTask]);
@@ -32,14 +32,18 @@ function MainBody() {
   const toggleStatus = (index) => {
     setTasks(
       tasks.map((task, i) =>
-        i === index ? { ...task, status: task.status === "Pending" ? "Completed" : "Pending" } : task
+        i === index
+          ? { ...task, status: task.status === "Pending" ? "Completed" : "Pending" }
+          : task
       )
     );
   };
 
-  // Delete Task
+  // Delete Task using splice
   const handleDelete = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
   };
 
   // Filtering Tasks
